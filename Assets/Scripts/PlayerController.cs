@@ -7,6 +7,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Weapon")]
+    public float weaponCooldown = 2f;
+    public float firingVelocity = 20f;
+
+    [Header("Movement")]
     public float jumpForce = 10f;
     public float moveSpeed = 1f;
     public float friction = 5f;
@@ -17,10 +22,15 @@ public class PlayerController : MonoBehaviour
     private Transform groundedCheck;
     [SerializeField]
     private LayerMask groundLayers;
+    [SerializeField]
+    public GameObject projectilePrefab;
 
     private Rigidbody2D _rb2d;
     private float _horizontalMovement;
+    private float _cooldownPeriod;
+    private Vector2 _cursorPosition;
     private bool _jump = false;
+    private bool _fire = false;
 
     private void Awake()
     {
@@ -36,6 +46,37 @@ public class PlayerController : MonoBehaviour
     {
         if(IsGrounded())
             _jump = true;
+    }
+
+    public void OnFire(InputValue value)
+    {
+        if(_cooldownPeriod <= 0f)
+            _fire = true;
+    }
+
+    public void OnAim(InputValue value)
+    {
+        _cursorPosition = value.Get<Vector2>();
+    }
+
+    private void Update()
+    {
+        //handle aiming
+        Vector3 playerPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector2 aimVec = _cursorPosition - new Vector2(playerPos.x, playerPos.y);
+
+        if(_cooldownPeriod > 0f)
+            _cooldownPeriod -= Time.deltaTime;
+
+        //handle firing
+        if (_fire)
+        {
+            _fire = false;
+            _cooldownPeriod = weaponCooldown;
+            GameObject projectile = Instantiate(projectilePrefab);
+            projectile.transform.position = transform.position;
+            projectile.GetComponent<DecayProjectile>().Fire(aimVec.normalized * firingVelocity);
+        }
     }
 
     private void FixedUpdate()

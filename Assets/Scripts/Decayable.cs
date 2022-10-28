@@ -6,8 +6,8 @@ using UnityEngine;
 public class Decayable : MonoBehaviour
 {
     public LayerMask decayableLayer;
-    public float decayRate = 1f;
-    public float decayThreshold = 0.2f;
+    public float decayRate = 0.25f;
+    public float decayThreshold = 0.5f;
     public float decaySpreadRadius = 1f;
 
     protected float _decay = 0f;
@@ -16,6 +16,11 @@ public class Decayable : MonoBehaviour
     public void StartDecay()
     {
         _decaying = true;
+    }
+
+    public void AddDecay(float amount)
+    {
+        _decay += amount;
     }
 
     protected virtual void Update()

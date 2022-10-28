@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4da8aae4f072d46848a9ab3d16a489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponCooldown: 2
+  firingVelocity: 20
   jumpForce: 10
   moveSpeed: 10
   friction: 10
@@ -177,6 +179,7 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 1
+  projectilePrefab: {fileID: 2149911232075398979, guid: a34bfb669910bed4ea7506c8b6d19ea1, type: 3}
 --- !u!114 &6716421936698872152
 MonoBehaviour:
   m_ObjectHideFlags: 0
