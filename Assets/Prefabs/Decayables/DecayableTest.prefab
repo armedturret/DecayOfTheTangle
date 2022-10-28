@@ -152,4 +152,5 @@ MonoBehaviour:
   decayRate: 0.5
   decayThreshold: 0.5
   decaySpreadRadius: 1
+  randomDecayRange: 0.2
   _decaying: 0

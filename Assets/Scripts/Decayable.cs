@@ -9,13 +9,17 @@ public class Decayable : MonoBehaviour
     public float decayRate = 0.25f;
     public float decayThreshold = 0.5f;
     public float decaySpreadRadius = 1f;
-
+    public float randomDecayRange = 0.2f;
     protected float _decay = 0f;
     public bool _decaying = false;
 
     public void StartDecay()
     {
+        if (_decaying) return;
+
         _decaying = true;
+        //give a random start decay to look nice
+        _decay = Random.Range(0f, randomDecayRange);
     }
 
     public void AddDecay(float amount)
