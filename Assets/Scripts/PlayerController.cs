@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -57,6 +58,12 @@ public class PlayerController : MonoBehaviour
     public void OnAim(InputValue value)
     {
         _cursorPosition = value.Get<Vector2>();
+    }
+
+    public void Kill()
+    {
+        //reload the scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()
