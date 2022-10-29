@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -477850588, guid: fe17cce257f560d4fa6904efebc5bd56, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
   decayableLayer:
     serializedVersion: 2
     m_Bits: 512
-  decayRate: 0.25
+  decayRate: 0.5
   decaySpreadThreshold: 0.5
   decaySpreadRadius: 1
   randomDecayRange: 0.2

@@ -236,11 +236,11 @@ MonoBehaviour:
   decayableLayer:
     serializedVersion: 2
     m_Bits: 512
-  decayRate: 0.25
+  decayRate: 0.5
   decaySpreadThreshold: 0.5
   decaySpreadRadius: 1
   randomDecayRange: 0.2
-  firingThreshold: 0.75
+  firingThreshold: 0.5
   projectileSpeed: 20
   playerLayer:
     serializedVersion: 2

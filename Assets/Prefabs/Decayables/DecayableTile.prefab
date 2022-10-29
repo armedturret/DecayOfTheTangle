@@ -235,7 +235,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   decayRate: 0.5
-  decaySpreadThreshold: 0.5
+  decaySpreadThreshold: 0.3
   decaySpreadRadius: 1
   randomDecayRange: 0.2
   physicsThreshold: 0.75
