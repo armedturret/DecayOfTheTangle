@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(mainMenuIndex);
+        MusicManager.instance.MenuMusic();
     }
 
     public void ReloadLevel()
