@@ -296,7 +296,7 @@ MonoBehaviour:
   groundedCheck: {fileID: 2982830413014594131}
   groundLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 513
   projectilePrefab: {fileID: 2149911232075398979, guid: a34bfb669910bed4ea7506c8b6d19ea1, type: 3}
   gunObject: {fileID: 734485426489945356}
   headObject: {fileID: 6627793814363538576}
