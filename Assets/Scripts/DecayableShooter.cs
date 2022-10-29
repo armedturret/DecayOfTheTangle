@@ -39,6 +39,7 @@ public class DecayableShooter : Decayable
             {
                 GameObject spike = Instantiate(spikePrefab);
                 spike.transform.position = transform.position;
+                spike.transform.rotation = transform.rotation;
                 spike.GetComponent<SpikeProjectile>().Fire(transform.up * projectileSpeed);
                 _projectileCooldown = firingCooldown;
             }
