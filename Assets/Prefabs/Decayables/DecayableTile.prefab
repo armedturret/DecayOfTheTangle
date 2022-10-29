@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2013881659158518313}
   - component: {fileID: 6206598758886093517}
   m_Layer: 9
-  m_Name: DecayableTest
+  m_Name: DecayableTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -96033145, guid: d226df33aed645c478f8b0096a8c8342, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   decayRate: 0.5
-  decayThreshold: 0.5
+  decaySpreadThreshold: 0.5
   decaySpreadRadius: 1
   randomDecayRange: 0.2
-  _decaying: 0
+  physicsThreshold: 0.75
