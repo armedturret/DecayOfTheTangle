@@ -2249,7 +2249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelOneIndex: 1
-  finalLevelIndex: 2
+  finalLevelIndex: 5
   mainMenuIndex: 0
   masterMixer: {fileID: 24100000, guid: f9a5fbc1470850345a44e11396788afd, type: 2}
 --- !u!4 &424776333
