@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class DecayableTile : Decayable
 {
+    public float physicsThreshold = 0.75f;
+
     private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
 
@@ -25,11 +27,16 @@ public class DecayableTile : Decayable
         //delete if completely decayed
         if (_decay >= 1f)
             Destroy(gameObject);
-    }
 
-    protected override void OnDecayed()
-    {
-        //make this object dynamic
-        _rb2d.bodyType = RigidbodyType2D.Dynamic;
+        //enable phsyics and destroy connections
+        if(_decay >= physicsThreshold)
+        {
+            //make this object dynamic
+            _rb2d.bodyType = RigidbodyType2D.Dynamic;
+
+            //break connections
+            if(GetComponent<FixedJoint2D>())
+                GetComponent<FixedJoint2D>().enabled = false;
+        }
     }
 }

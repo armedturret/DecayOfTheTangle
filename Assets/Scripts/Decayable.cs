@@ -7,7 +7,7 @@ public class Decayable : MonoBehaviour
 {
     public LayerMask decayableLayer;
     public float decayRate = 0.25f;
-    public float decayThreshold = 0.5f;
+    public float decaySpreadThreshold = 0.5f;
     public float decaySpreadRadius = 1f;
     public float randomDecayRange = 0.2f;
     protected float _decay = 0f;
@@ -37,10 +37,8 @@ public class Decayable : MonoBehaviour
         }
 
         //check if past threshold (perform OnDecayed and check for infection)
-        if(_decay >= decayThreshold)
+        if(_decay >= decaySpreadThreshold)
         {
-            OnDecayed();
-
             //decay spread check
             Collider2D[] detected = Physics2D.OverlapCircleAll(transform.position, decaySpreadRadius, decayableLayer);
             foreach(var other in detected)
@@ -48,10 +46,5 @@ public class Decayable : MonoBehaviour
                 other.gameObject.GetComponent<Decayable>().StartDecay();
             }
         }
-    }
-
-    protected virtual void OnDecayed()
-    {
-
     }
 }
