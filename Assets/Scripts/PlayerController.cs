@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     public float jumpForce = 10f;
+    public float jumpDampen = 2f;
     public float moveSpeed = 1f;
     public float friction = 5f;
     public float moveAcceleration = 0.1f;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private float _cooldownPeriod;
     private Vector2 _cursorPosition;
     private bool _jump = false;
+    private bool _jumpReleased = false;
     private bool _fire = false;
 
     private void Awake()
@@ -51,8 +53,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if(IsGrounded())
+        if (IsGrounded() && value.Get<float>() > 0f)
             _jump = true;
+        else if (value.Get<float>() <= 0f)
+            _jumpReleased = true;
     }
 
     public void OnFire(InputValue value)
@@ -110,28 +114,25 @@ public class PlayerController : MonoBehaviour
         {
             bodyAnimator.GetComponent<SpriteRenderer>().flipX = false;
         }
-        
-    }
 
-    private void FixedUpdate()
-    {
         //handle player movement
         Vector2 currentVelocity = _rb2d.velocity;
 
         //add horizontal movement
         if (Mathf.Abs(_horizontalMovement) > 0.1f)
         {
-            currentVelocity.x += _horizontalMovement * moveAcceleration * Time.fixedDeltaTime;
+            currentVelocity.x += _horizontalMovement * moveAcceleration * Time.deltaTime;
         }
-        else if(Mathf.Abs(currentVelocity.x) > 0.1f)
+        else if (Mathf.Abs(currentVelocity.x) > 0.1f)
         {
-            float delta = friction * Time.fixedDeltaTime;
-            currentVelocity.x = currentVelocity.normalized.x * Mathf.Min(0f, Mathf.Abs(currentVelocity.x) - delta);
+            float delta = friction * Time.deltaTime;
+            currentVelocity.x = currentVelocity.normalized.x * Mathf.Max(0f, Mathf.Abs(currentVelocity.x) - delta);
         }
         else
         {
             currentVelocity.x = 0f;
         }
+
         currentVelocity.x = Mathf.Clamp(currentVelocity.x, -moveSpeed, moveSpeed);
 
         //add jump velocity
@@ -141,8 +142,15 @@ public class PlayerController : MonoBehaviour
             _jump = false;
         }
 
+        //add dampen if jump released
+        if (_jumpReleased)
+        {
+            _jumpReleased = false;
+            if (currentVelocity.y > 0f)
+                currentVelocity.y /= jumpDampen;
+        }
+
         _rb2d.velocity = currentVelocity;
-        
     }
 
     private bool IsGrounded()

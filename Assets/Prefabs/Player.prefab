@@ -291,9 +291,10 @@ MonoBehaviour:
   weaponCooldown: 0.5
   firingVelocity: 20
   jumpForce: 10
+  jumpDampen: 2
   moveSpeed: 10
-  friction: 10
-  moveAcceleration: 100
+  friction: 100
+  moveAcceleration: 70
   groundedCheck: {fileID: 2982830413014594131}
   groundLayers:
     serializedVersion: 2
