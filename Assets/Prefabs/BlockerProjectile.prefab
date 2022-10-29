@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7445381979562190930}
   - component: {fileID: 8091030855759635239}
   - component: {fileID: 401642418082674686}
-  - component: {fileID: 6704595372377333}
+  - component: {fileID: 4141990415910486521}
   m_Layer: 11
-  m_Name: SpikeProjectile
+  m_Name: BlockerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &6704595372377333
+--- !u!114 &4141990415910486521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,11 +159,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2981180984506641356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f707c2f7093ab24448314617c02a78d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b1292f42be5b184094c704ba4e67c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
-  initialDisable: 0.2
+  initialDisable: 0.1
   playerLayer:
     serializedVersion: 2
     m_Bits: 256

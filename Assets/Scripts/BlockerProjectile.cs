@@ -1,13 +1,8 @@
 ﻿using System.Collections;
-
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
-public class SpikeProjectile : MonoBehaviour
+public class BlockerProjectile : MonoBehaviour
 {
-
-    public float lifetime = 5f;
     public float initialDisable = 0.1f;
     [SerializeField]
     private LayerMask playerLayer;
@@ -30,21 +25,18 @@ public class SpikeProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //check if hit player then destroy self
+        //check if hit player then remain static at position
         if (Utils.InLayerMask(playerLayer, collision.gameObject.layer))
         {
             collision.gameObject.GetComponent<PlayerController>().Kill();
         }
-        Destroy(gameObject);
+        _rb2d.velocity = Vector2.zero;
+        _rb2d.bodyType = RigidbodyType2D.Static;
     }
 
     private void Update()
     {
         _timeAlive += Time.deltaTime;
         _collider.enabled = _timeAlive > initialDisable;
-
-        lifetime -= Time.deltaTime;
-        if (lifetime <= 0f)
-            Destroy(gameObject);
     }
 }
