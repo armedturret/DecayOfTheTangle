@@ -11,7 +11,7 @@ public class Decayable : MonoBehaviour
     public float decaySpreadRadius = 1f;
     public float randomDecayRange = 0.2f;
     protected float _decay = 0f;
-    public bool _decaying = false;
+    private bool _decaying = false;
 
     public void StartDecay()
     {

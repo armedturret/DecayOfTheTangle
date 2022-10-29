@@ -28,7 +28,7 @@ public class DecayableThicket : Decayable
         //calculate the color interpolating with decay
         _spriteRenderer.color = new Color(1f, (1f - _decay), (1f - _decay));
 
-        //enable phsyics and destroy connections
+        //enable hazard and destroy connections
         if(_decay >= hazardThreshold)
         {
             //enable the hazard
