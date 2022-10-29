@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -441256417, guid: fe17cce257f560d4fa6904efebc5bd56, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,5 +169,4 @@ MonoBehaviour:
   decaySpreadThreshold: 0.5
   decaySpreadRadius: 1
   randomDecayRange: 0.2
-  _decaying: 0
   hazardThreshold: 0.75
