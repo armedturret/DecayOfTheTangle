@@ -72,8 +72,7 @@ public class PlayerController : MonoBehaviour
 
     public void Kill()
     {
-        //reload the scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.instance.ReloadLevel();
     }
 
     private void Update()

@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void Continue()
     {
-        SceneManager.LoadScene(GameManager.instance.GetLevel());
+        GameManager.instance.Continue();
     }
 
     public void SetSFXVol(float percent)
