@@ -2,7 +2,6 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Hazard))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class DecayableThicket : Decayable
@@ -11,14 +10,12 @@ public class DecayableThicket : Decayable
     [SerializeField]
     private SpriteRenderer backRenderer;
 
-    private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
     private Hazard _hazard;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _rb2d = GetComponent<Rigidbody2D>();
         _hazard = GetComponent<Hazard>();
         _hazard.enabled = false;
     }
