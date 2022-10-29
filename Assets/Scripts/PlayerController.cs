@@ -24,7 +24,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayers;
     [SerializeField]
-    public GameObject projectilePrefab;
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private GameObject gunObject;
+    [SerializeField]
+    private GameObject headObject;
+    [SerializeField]
+    private Animator bodyAnimator;
 
     private Rigidbody2D _rb2d;
     private float _horizontalMovement;
@@ -72,7 +78,16 @@ public class PlayerController : MonoBehaviour
         Vector3 playerPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector2 aimVec = _cursorPosition - new Vector2(playerPos.x, playerPos.y);
 
-        if(_cooldownPeriod > 0f)
+        //show weapon aiming
+        float targetZ = Vector2.SignedAngle(Vector2.right, aimVec);
+
+        //flip gun if Abs > 90
+        gunObject.GetComponent<SpriteRenderer>().flipY = Mathf.Abs(targetZ) > 90f;
+        headObject.GetComponent<SpriteRenderer>().flipX = Mathf.Abs(targetZ) > 90f;
+
+        gunObject.transform.eulerAngles = new Vector3(0f, 0f, targetZ);
+
+        if (_cooldownPeriod > 0f)
             _cooldownPeriod -= Time.deltaTime;
 
         //handle firing
@@ -84,6 +99,18 @@ public class PlayerController : MonoBehaviour
             projectile.transform.position = transform.position;
             projectile.GetComponent<DecayProjectile>().Fire(aimVec.normalized * firingVelocity);
         }
+
+        //handle goofy animations
+        bodyAnimator.SetBool("Mid Air", !IsGrounded());
+        bodyAnimator.SetBool("Walking", Mathf.Abs(_rb2d.velocity.x) > 0.5f);
+        if(_rb2d.velocity.x < 0f)
+        {
+            bodyAnimator.GetComponent<SpriteRenderer>().flipX = true;
+        }else if(_rb2d.velocity.x > 0f)
+        {
+            bodyAnimator.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        
     }
 
     private void FixedUpdate()
