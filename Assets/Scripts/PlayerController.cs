@@ -70,6 +70,11 @@ public class PlayerController : MonoBehaviour
         _cursorPosition = value.Get<Vector2>();
     }
 
+    public void OnExit(InputValue value)
+    {
+        GameManager.instance.MainMenu();
+    }
+
     public void Kill()
     {
         GameManager.instance.ReloadLevel();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,11 @@ public class GameManager : MonoBehaviour
     public int levelOneIndex = 1;
     public int finalLevelIndex = 2;
     public int mainMenuIndex = 0;
+
+    public AudioMixer masterMixer;
+
+    private float _sfxPercent = 1f;
+    private float _musicPercent = 1f;
 
     private void Awake()
     {
@@ -77,5 +83,29 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("level", levelOneIndex);
         PlayerPrefs.SetInt("deaths", 0);
         PlayerPrefs.Save();
+    }
+
+    public float GetSFXVolume()
+    {
+        return _sfxPercent;
+    }
+
+    public void SetSFXVolume(float percent)
+    {
+        _sfxPercent = percent;
+        percent = Mathf.Max(percent, 0.001f);
+        masterMixer.SetFloat("SFXVol", Mathf.Log10(percent) * 20);
+    }
+
+    public float GetMusicVolume()
+    {
+        return _musicPercent;
+    }
+
+    public void SetMusicVolume(float percent)
+    {
+        _musicPercent = percent;
+        percent = Mathf.Max(percent, 0.001f);
+        masterMixer.SetFloat("SFXVol", Mathf.Log10(percent) * 20);
     }
 }
