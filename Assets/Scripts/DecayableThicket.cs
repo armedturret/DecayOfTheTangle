@@ -8,6 +8,8 @@ using UnityEngine;
 public class DecayableThicket : Decayable
 {
     public float hazardThreshold = 0.75f;
+    [SerializeField]
+    private SpriteRenderer backRenderer;
 
     private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
@@ -26,10 +28,11 @@ public class DecayableThicket : Decayable
         base.Update();
 
         //calculate the color interpolating with decay
-        _spriteRenderer.color = new Color(1f, (1f - _decay), (1f - _decay));
+        _spriteRenderer.color = new Color(1f, 1f, 1f, 1f - _decay);
+        backRenderer.color = new Color(1f, 1f, 1f, _decay);
 
         //enable hazard and destroy connections
-        if(_decay >= hazardThreshold)
+        if (_decay >= hazardThreshold)
         {
             //enable the hazard
             _hazard.enabled = true;

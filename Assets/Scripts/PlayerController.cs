@@ -123,10 +123,14 @@ public class PlayerController : MonoBehaviour
         {
             currentVelocity.x += _horizontalMovement * moveAcceleration * Time.fixedDeltaTime;
         }
-        else
+        else if(Mathf.Abs(currentVelocity.x) > 0.1f)
         {
             float delta = friction * Time.fixedDeltaTime;
             currentVelocity.x = currentVelocity.normalized.x * Mathf.Min(0f, Mathf.Abs(currentVelocity.x) - delta);
+        }
+        else
+        {
+            currentVelocity.x = 0f;
         }
         currentVelocity.x = Mathf.Clamp(currentVelocity.x, -moveSpeed, moveSpeed);
 

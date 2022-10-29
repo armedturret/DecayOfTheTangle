@@ -11,6 +11,10 @@ public class DecayableShooter : Decayable
     public float projectileSpeed = 1f;
     [SerializeField]
     private GameObject spikePrefab;
+    [SerializeField]
+    private SpriteRenderer turretRenderer;
+    [SerializeField]
+    private Sprite corruptedTurret;
 
     private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
@@ -28,11 +32,13 @@ public class DecayableShooter : Decayable
         base.Update();
 
         //calculate the color interpolating with decay
-        _spriteRenderer.color = new Color((1f - _decay), 1f, (1f - _decay));
+        _spriteRenderer.color = new Color(1f, 1f, 1f, 1f - _decay);
 
         //enable firing of projectiles
-        if(_decay >= firingThreshold)
+        if (_decay >= firingThreshold)
         {
+            turretRenderer.sprite = corruptedTurret;
+
             _projectileCooldown -= Time.deltaTime;
 
             if(_projectileCooldown <= 0f)

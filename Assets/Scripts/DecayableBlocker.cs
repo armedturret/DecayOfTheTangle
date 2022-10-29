@@ -16,6 +16,10 @@ public class DecayableBlocker : Decayable
     private GameObject blockerPrefab;
     [SerializeField]
     private LineRenderer lineRenderer;
+    [SerializeField]
+    private SpriteRenderer turretRenderer;
+    [SerializeField]
+    private Sprite corruptedTurret;
 
     private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
@@ -33,7 +37,7 @@ public class DecayableBlocker : Decayable
         base.Update();
 
         //calculate the color interpolating with decay
-        _spriteRenderer.color = new Color((1f - _decay), (1f - _decay), 1f);
+        _spriteRenderer.color = new Color(1f, 1f, 1f, 1f - _decay);
 
         //check if the player hit the blocker wall
         if(_blocker != null)
@@ -54,6 +58,9 @@ public class DecayableBlocker : Decayable
         if (_decay >= firingThreshold && !_fired)
         {
             _fired = true;
+
+            turretRenderer.sprite = corruptedTurret;
+
             _blocker = Instantiate(blockerPrefab, transform);
             _blocker.transform.position = transform.position;
             _blocker.transform.rotation = transform.rotation;

@@ -22,7 +22,7 @@ public class DecayableTile : Decayable
         base.Update();
 
         //calculate the color interpolating with decay
-        _spriteRenderer.color = new Color(1f - _decay, 1f - _decay, 1f - _decay);
+        _spriteRenderer.color = new Color(1f, 1f, 1f, 1f - _decay);
 
         //delete if completely decayed
         if (_decay >= 1f)
