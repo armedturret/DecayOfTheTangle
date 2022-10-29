@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
         if (GetLevel() == levelOneIndex)
             ResetSave();
         SceneManager.LoadScene(GetLevel());
+        MusicManager.instance.MainMusic();
     }
 
     public void ResetSave()
@@ -106,6 +107,6 @@ public class GameManager : MonoBehaviour
     {
         _musicPercent = percent;
         percent = Mathf.Max(percent, 0.001f);
-        masterMixer.SetFloat("SFXVol", Mathf.Log10(percent) * 20);
+        masterMixer.SetFloat("MusicVol", Mathf.Log10(percent) * 20);
     }
 }
