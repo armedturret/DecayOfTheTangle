@@ -294,7 +294,7 @@ MonoBehaviour:
   jumpDampen: 3.5
   moveSpeed: 8
   friction: 100
-  moveAcceleration: 70
+  moveAcceleration: 80
   groundedCheck: {fileID: 2982830413014594131}
   groundLayers:
     serializedVersion: 2
