@@ -11,6 +11,8 @@ public class DecayProjectile : MonoBehaviour
     public float decayIncrease = 0.2f;
     [SerializeField]
     private LayerMask decayableLayer;
+    [SerializeField]
+    private GameObject explosionParticles;
 
     private Rigidbody2D _rb2d;
     private void Awake()
@@ -33,6 +35,8 @@ public class DecayProjectile : MonoBehaviour
             other.gameObject.GetComponent<Decayable>().AddDecay(decayIncrease);
         }
 
+        var explosion = Instantiate(explosionParticles);
+        explosion.transform.position = transform.position;
         Destroy(gameObject);
     }
 
