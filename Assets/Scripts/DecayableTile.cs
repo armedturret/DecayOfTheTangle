@@ -8,6 +8,9 @@ public class DecayableTile : Decayable
 {
     public float physicsThreshold = 0.75f;
 
+    [SerializeField]
+    private AudioSource fallAudio;
+
     private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
 
@@ -29,10 +32,13 @@ public class DecayableTile : Decayable
             Destroy(gameObject);
 
         //enable phsyics and destroy connections
-        if(_decay >= physicsThreshold)
+        if(_decay >= physicsThreshold && _rb2d.bodyType != RigidbodyType2D.Dynamic)
         {
             //make this object dynamic
             _rb2d.bodyType = RigidbodyType2D.Dynamic;
+
+            //fall audio
+            fallAudio.Play();
 
             //break connections
             if(GetComponent<FixedJoint2D>())
