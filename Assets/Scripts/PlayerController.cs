@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float friction = 5f;
     public float moveAcceleration = 0.1f;
+    public float deathDuration = 1f;
 
     [Header("References")]
     [SerializeField]
@@ -29,7 +30,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject gunObject;
     [SerializeField]
-    private GameObject headObject;
+    private SpriteRenderer headObject;
+    [SerializeField]
+    private Sprite headDeath;
     [SerializeField]
     private Animator bodyAnimator;
     [SerializeField]
@@ -38,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private AudioSource jumpAudio;
     [SerializeField]
     private AudioSource moveAudio;
+    [SerializeField]
+    private AudioSource deathAudio;
 
     private Rigidbody2D _rb2d;
     private float _horizontalMovement;
@@ -46,6 +51,8 @@ public class PlayerController : MonoBehaviour
     private bool _jump = false;
     private bool _jumpReleased = false;
     private bool _fire = false;
+    private bool _dead = false;
+    private float _deathTime = 0f;
 
     private void Awake()
     {
@@ -54,11 +61,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
+        if (_dead)
+            return;
+
         _horizontalMovement = value.Get<Vector2>().x;
     }
 
     public void OnJump(InputValue value)
     {
+        if (_dead)
+            return;
+
         if (IsGrounded() && value.Get<float>() > 0f)
             _jump = true;
         else if (value.Get<float>() <= 0f)
@@ -67,12 +80,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
-        if(_cooldownPeriod <= 0f)
+        if (_dead)
+        {
+            GameManager.instance.ReloadLevel();
+            return;
+        }
+
+        if (_cooldownPeriod <= 0f)
             _fire = true;
     }
 
     public void OnAim(InputValue value)
     {
+        if (_dead)
+            return;
+
         _cursorPosition = value.Get<Vector2>();
     }
 
@@ -88,7 +110,26 @@ public class PlayerController : MonoBehaviour
 
     public void Kill()
     {
-        GameManager.instance.ReloadLevel();
+        if (_dead)
+            return;
+
+        //death stuff
+        _dead = true;
+        
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<CameraFollow>().enabled = false;
+
+        _jump = true;
+        _jumpReleased = false;
+        _horizontalMovement = 0f;
+
+        _rb2d.velocity = Vector2.zero;
+        _rb2d.gravityScale *= 1.5f;
+
+        headObject.sprite = headDeath;
+        bodyAnimator.SetBool("Dead", true);
+
+        deathAudio.Play();
     }
 
     private void Update()
@@ -102,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
         //flip gun if Abs > 90
         gunObject.GetComponent<SpriteRenderer>().flipY = Mathf.Abs(targetZ) > 90f;
-        headObject.GetComponent<SpriteRenderer>().flipX = Mathf.Abs(targetZ) > 90f;
+        headObject.flipX = Mathf.Abs(targetZ) > 90f;
 
         gunObject.transform.eulerAngles = new Vector3(0f, 0f, targetZ);
 
@@ -174,6 +215,15 @@ public class PlayerController : MonoBehaviour
         }
 
         _rb2d.velocity = currentVelocity;
+
+        //handle death stuff
+        if (_dead)
+        {
+            _deathTime += Time.deltaTime;
+
+            if (_deathTime > deathDuration)
+                GameManager.instance.ReloadLevel();
+        }
     }
 
     private bool IsGrounded()
