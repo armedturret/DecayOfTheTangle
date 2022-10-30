@@ -2,7 +2,6 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class DecayableBlocker : Decayable
 {
@@ -21,7 +20,6 @@ public class DecayableBlocker : Decayable
     [SerializeField]
     private Sprite corruptedTurret;
 
-    private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
     private GameObject _blocker;
     private bool _fired;
@@ -29,7 +27,6 @@ public class DecayableBlocker : Decayable
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     protected override void Update()
