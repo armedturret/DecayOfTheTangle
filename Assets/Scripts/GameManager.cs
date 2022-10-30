@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int levelOneIndex = 1;
-    public int finalLevelIndex = 2;
+    public int finalLevelIndex = 9;
+    public int victoryIndex = 10;
     public int mainMenuIndex = 0;
 
     public AudioMixer masterMixer;
