@@ -30,6 +30,10 @@ public class BlockerProjectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerController>().Kill();
         }
+
+        //disable particle emission
+        GetComponent<ParticleSystem>().Stop();
+
         _rb2d.velocity = Vector2.zero;
         _rb2d.bodyType = RigidbodyType2D.Static;
     }
