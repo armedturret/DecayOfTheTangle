@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         return PlayerPrefs.GetInt("level", levelOneIndex);
     }
 
+    public int GetDeaths()
+    {
+        return PlayerPrefs.GetInt("deaths");
+    }
+
     //sets highest unlock value
     public void UnlockLevel(int buildIndex)
     {
@@ -65,8 +70,8 @@ public class GameManager : MonoBehaviour
         //determine if next level should be shown
         if(nextLevel > finalLevelIndex)
         {
-            //load the game over scene (non existent)
-            MainMenu();
+            //load the game over scene
+            SceneManager.LoadScene(victoryIndex);
         }
         else
         {
