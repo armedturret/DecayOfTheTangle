@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bbd5f9fbc18374f949142d2f2bab31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 1
+  explosionRadius: 0.8
   lifetime: 5
   decayIncrease: 0.2
   decayableLayer:

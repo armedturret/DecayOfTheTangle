@@ -42,7 +42,7 @@ public class DecayableBlocker : Decayable
         //check if the player hit the blocker wall
         if(_blocker != null)
         {
-            var hit = Physics2D.Raycast(transform.position, _blocker.transform.localPosition, Vector2.Distance(transform.position, _blocker.transform.position), checkLayers);
+            var hit = Physics2D.Raycast(transform.position, _blocker.transform.position - transform.position, Vector2.Distance(transform.position, _blocker.transform.position), checkLayers);
             if(hit && Utils.InLayerMask(playerLayer, hit.collider.gameObject.layer))
             {
                 //hit the player
