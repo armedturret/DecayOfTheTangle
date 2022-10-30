@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     private GameObject headObject;
     [SerializeField]
     private Animator bodyAnimator;
+    [SerializeField]
+    private AudioSource gunAudio;
+    [SerializeField]
+    private AudioSource jumpAudio;
+    [SerializeField]
+    private AudioSource moveAudio;
 
     private Rigidbody2D _rb2d;
     private float _horizontalMovement;
@@ -106,6 +112,7 @@ public class PlayerController : MonoBehaviour
         //handle firing
         if (_fire)
         {
+            gunAudio.Play();
             _fire = false;
             _cooldownPeriod = weaponCooldown;
             GameObject projectile = Instantiate(projectilePrefab);
@@ -131,6 +138,8 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(_horizontalMovement) > 0.1f)
         {
             currentVelocity.x += _horizontalMovement * moveAcceleration * Time.deltaTime;
+            if(!moveAudio.isPlaying && IsGrounded())
+                moveAudio.Play();
         }
         else if (Mathf.Abs(currentVelocity.x) > 0.1f)
         {
@@ -139,6 +148,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            moveAudio.Stop();
             currentVelocity.x = 0f;
         }
 
@@ -149,7 +159,11 @@ public class PlayerController : MonoBehaviour
         {
             currentVelocity.y = jumpForce;
             _jump = false;
+            jumpAudio.Play();
         }
+
+        if(!IsGrounded())
+            moveAudio.Stop();
 
         //add dampen if jump released
         if (_jumpReleased)
