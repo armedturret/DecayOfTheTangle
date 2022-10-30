@@ -15,6 +15,8 @@ public class DecayableShooter : Decayable
     private SpriteRenderer turretRenderer;
     [SerializeField]
     private Sprite corruptedTurret;
+    [SerializeField]
+    private AudioSource fireSound;
 
     private Rigidbody2D _rb2d;
     private SpriteRenderer _spriteRenderer;
@@ -43,6 +45,8 @@ public class DecayableShooter : Decayable
 
             if(_projectileCooldown <= 0f)
             {
+                fireSound.Play();
+
                 GameObject spike = Instantiate(spikePrefab);
                 spike.transform.position = transform.position;
                 spike.transform.rotation = transform.rotation;

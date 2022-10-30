@@ -10,6 +10,7 @@ public class Decayable : MonoBehaviour
     public float decaySpreadThreshold = 0.5f;
     public float decaySpreadRadius = 1f;
     public float randomDecayRange = 0.2f;
+
     protected float _decay = 0f;
     private bool _decaying = false;
 
@@ -18,6 +19,9 @@ public class Decayable : MonoBehaviour
         if (_decaying) return;
 
         _decaying = true;
+
+        if(GetComponent<AudioSource>())
+            GetComponent<AudioSource>().Play();
         //give a random start decay to look nice
         _decay = Random.Range(0f, randomDecayRange);
     }

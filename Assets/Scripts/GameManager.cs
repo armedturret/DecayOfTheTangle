@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     public void ReloadLevel()
     {
         PlayerPrefs.SetInt("deaths", PlayerPrefs.GetInt("deaths") + 1);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

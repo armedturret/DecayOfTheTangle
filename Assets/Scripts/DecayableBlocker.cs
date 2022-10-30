@@ -19,6 +19,8 @@ public class DecayableBlocker : Decayable
     private SpriteRenderer turretRenderer;
     [SerializeField]
     private Sprite corruptedTurret;
+    [SerializeField]
+    private AudioSource fireSound;
 
     private SpriteRenderer _spriteRenderer;
     private GameObject _blocker;
@@ -55,6 +57,8 @@ public class DecayableBlocker : Decayable
         if (_decay >= firingThreshold && !_fired)
         {
             _fired = true;
+
+            fireSound.Play();
 
             turretRenderer.sprite = corruptedTurret;
 
