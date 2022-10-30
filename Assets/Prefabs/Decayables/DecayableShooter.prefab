@@ -240,8 +240,8 @@ MonoBehaviour:
   decaySpreadRadius: 1
   randomDecayRange: 0.2
   firingThreshold: 0.5
-  firingCooldown: 0.5
-  projectileSpeed: 10
+  firingCooldown: 1
+  projectileSpeed: 7
   spikePrefab: {fileID: 2981180984506641356, guid: 41f4e095cdb0fe6448221c6af82c52dd, type: 3}
   turretRenderer: {fileID: 8766782933423408947}
   corruptedTurret: {fileID: 1682612177, guid: cf9c171e828c60f4d926d8718b791c44, type: 3}

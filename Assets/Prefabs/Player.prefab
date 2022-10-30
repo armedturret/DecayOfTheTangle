@@ -252,8 +252,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.6, y: 1}
+  m_Offset: {x: 0, y: -0.05}
+  m_Size: {x: 0.6, y: 0.9}
   m_Direction: 0
 --- !u!50 &7227660621924128973
 Rigidbody2D:
@@ -291,8 +291,8 @@ MonoBehaviour:
   weaponCooldown: 0.5
   firingVelocity: 20
   jumpForce: 10
-  jumpDampen: 2
-  moveSpeed: 10
+  jumpDampen: 3.5
+  moveSpeed: 8
   friction: 100
   moveAcceleration: 70
   groundedCheck: {fileID: 2982830413014594131}

@@ -704,7 +704,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 10
+      m_TileSpriteIndex: 12
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1765,12 +1765,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 5
     m_Data: {fileID: -1893812648, guid: 98c4f8510241c914fa65002b268943dd, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -2095945281, guid: 98c4f8510241c914fa65002b268943dd, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 5
     m_Data: {fileID: 831535537, guid: 98c4f8510241c914fa65002b268943dd, type: 3}
   - m_RefCount: 5
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelOneIndex: 1
-  finalLevelIndex: 4
+  finalLevelIndex: 6
   mainMenuIndex: 0
   masterMixer: {fileID: 24100000, guid: f9a5fbc1470850345a44e11396788afd, type: 2}
 --- !u!4 &424776333

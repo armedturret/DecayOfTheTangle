@@ -75,6 +75,11 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.MainMenu();
     }
 
+    public void OnRestart(InputValue value)
+    {
+        GameManager.instance.ReloadLevel();
+    }
+
     public void Kill()
     {
         GameManager.instance.ReloadLevel();
